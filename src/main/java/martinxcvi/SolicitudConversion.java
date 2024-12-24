@@ -12,9 +12,11 @@ import java.io.IOException;
 
 public class SolicitudConversion {
     public String ejecutarConversion(String monedaBase, Double cantidad, String monedaFinal) {
-
+        if(cantidad <= 0) {
+            throw new IllegalArgumentException("El monto debe ser mayor que 0.");
+        }
         try {
-            URI solicitudDireccion = URI.create("https://v6.exchangerate-api.com/v6/YOUR_API_KEY_HERE/pair/"+monedaBase+"/"+monedaFinal+"/"+cantidad);
+            URI solicitudDireccion = URI.create("https://v6.exchangerate-api.com/v6/56ca92dcd0d2df7ece3fe217/pair/"+monedaBase+"/"+monedaFinal+"/"+cantidad);
 
             HttpClient client = HttpClient.newHttpClient();
 
@@ -25,6 +27,10 @@ public class SolicitudConversion {
 
             JsonElement elementoJSON = JsonParser.parseString(dataJSON);
             JsonObject objetoJSON = elementoJSON.getAsJsonObject();
+
+            if (!objetoJSON.get("result").getAsString().equals("success")) {
+                throw new RuntimeException("Error en la API: " + objetoJSON.get("error-type").getAsString());
+            }
 
             String resultado = objetoJSON.get("conversion_result").getAsString();
             System.out.println("\nEl monto base de " + cantidad + " " + monedaBase + " convertido a " + monedaFinal + " equivale a: " + resultado + " " + monedaFinal + "\n");
