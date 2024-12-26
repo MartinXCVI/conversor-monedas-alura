@@ -32,6 +32,7 @@ public class InterfazUsuario {
                 """;
 
         int opcionElegida = 0;
+        // El bucle finaliza una vez que el usuario ingres el valor 9
         while(opcionElegida != 9) {
             try {
                 System.out.println(menu);
