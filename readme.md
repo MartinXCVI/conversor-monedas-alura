@@ -1,5 +1,11 @@
 # Conversor de Monedas - Oracle Next Education - G7, 2024
 
+---
+
+![Insignia de Alura Latam](./Badge-Conversor.png 'Insignia de Alura Latam')
+
+---
+
 ## 📄 Introducción
 
 Aplicación de consola desarrollada en Java que permite realizar conversiones de moneda pre-seleccionadas utilizando la ExchangeRate-API. Los resultados de las conversiones se guardan en un archivo de texto como historial de referencia.
